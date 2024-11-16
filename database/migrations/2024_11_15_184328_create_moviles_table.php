@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('movil_estado_id')->nullable();
             $table->unsignedBigInteger('movil_tipo_id')->nullable();
             $table->string('km_actual')->nullable();
+            $table->text('observaciones')->nullable();
             $table->timestamps();
 
             $table->foreign('movil_combustible_id')->references('id_movil_combustible')->on('moviles_combustibles')->onUpdate('cascade')->onDelete('set null');

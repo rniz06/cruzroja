@@ -23,7 +23,7 @@ class ConductorResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Conductores';
+    // protected static ?string $navigationGroup = 'Conductores';
 
     public static function form(Form $form): Form
     {

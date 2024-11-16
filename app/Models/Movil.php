@@ -18,6 +18,7 @@ class Movil extends Model
         'movil_estado_id',
         'movil_tipo_id',
         'km_actual',
+        'observaciones',
     ];
 
     // Relacion uno a muchos con la tabla "moviles_combustibles" a travez del campo "movil_combustible_id"
