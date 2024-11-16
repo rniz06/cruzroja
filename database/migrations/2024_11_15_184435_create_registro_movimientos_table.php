@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ciudad_id')->nullable();
             $table->unsignedBigInteger('servicio_id')->nullable();
             $table->unsignedBigInteger('clasificacion_servicio_id')->nullable();
+            $table->unsignedBigInteger('usuario_id')->nullable();
             $table->dateTime('fecha_hora_salida');
             $table->integer('km_inicial');
             $table->string('destino')->nullable();
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->foreign('ciudad_id')->references('id_ciudad')->on('ciudades')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('servicio_id')->references('id_servicio')->on('servicios')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('clasificacion_servicio_id')->references('id_servicio_clasificacion')->on('servicios_clasificaciones')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('usuario_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('set null');
         });
     }
 

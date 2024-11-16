@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('moviles', function (Blueprint $table) {
             $table->id('id_movil');
-            $table->unsignedBigInteger('moviles_combustible_id')->nullable();
-            $table->unsignedBigInteger('moviles_estado_id')->nullable();
-            $table->unsignedBigInteger('moviles_tipo_id')->nullable();
+            $table->unsignedBigInteger('movil_combustible_id')->nullable();
+            $table->unsignedBigInteger('movil_estado_id')->nullable();
+            $table->unsignedBigInteger('movil_tipo_id')->nullable();
             $table->string('km_actual')->nullable();
             $table->timestamps();
 
-            $table->foreign('moviles_combustible_id')->references('id_moviles_combustibles')->on('moviles_combustibles')->onUpdate('cascade')->onDelete('set null');
-            $table->foreign('moviles_estado_id')->references('id_moviles_estados')->on('moviles_estados')->onUpdate('cascade')->onDelete('set null');
-            $table->foreign('moviles_tipo_id')->references('id_moviles_tipos')->on('moviles_tipos')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('movil_combustible_id')->references('id_movil_combustible')->on('moviles_combustibles')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('movil_estado_id')->references('id_movil_estado')->on('moviles_estados')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('movil_tipo_id')->references('id_movil_tipo')->on('moviles_tipos')->onUpdate('cascade')->onDelete('set null');
         });
     }
 
