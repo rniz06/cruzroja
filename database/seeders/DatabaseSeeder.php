@@ -29,8 +29,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            CiudadSeeder::class,
             ConductoresEstadoSeeder::class,
             ConductoresLicenciaSeeder::class,
+            MovilesTipoSeeder::class,
+            MovilesEstadoSeeder::class,
+            MovilesCombustibleSeeder::class,
+            ServicioSeeder::class,
+            ServiciosClasficacionSeeder::class,
         ]);
     }
 }
