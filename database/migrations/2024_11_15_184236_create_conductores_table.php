@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombres',50);
             $table->string('apellidos',50)->nullable();
             $table->string('nombre_completo',100);
-            $table->string('ci_conductor',20);
+            $table->string('ci_conductor',20)->unique();
             $table->unsignedBigInteger('conductor_estado_id')->nullable();
             $table->unsignedBigInteger('conductor_licencia_id')->nullable();
             $table->timestamps();

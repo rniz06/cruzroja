@@ -27,5 +27,10 @@ class DatabaseSeeder extends Seeder
             'email' => "admin@admin.com",
             'password' => Hash::make('Rann2006'),
         ]);
+
+        $this->call([
+            ConductoresEstadoSeeder::class,
+            ConductoresLicenciaSeeder::class,
+        ]);
     }
 }
