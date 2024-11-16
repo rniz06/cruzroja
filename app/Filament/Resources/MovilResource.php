@@ -70,7 +70,7 @@ class MovilResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('tipo.movil_tipo')->label('Tipo:')->searchable()->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('tipo.movil_tipo')->label('Tipo:')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('combustible.tipo_combustible')->label('Combustible:')->badge()->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('estado.movil_estado')->label('Estado:')->badge()->color(function ($state) {
                     return $state === 'ACTIVO' ? 'success' : 'danger';  // Cambiar el color dependiendo del estado

@@ -54,15 +54,29 @@ class ConductorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre_completo')->label('Nombre:'),
-                Tables\Columns\TextColumn::make('ci_conductor')->label('CI:'),
+                Tables\Columns\TextColumn::make('nombre_completo')->label('Nombre:')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('ci_conductor')->label('CI:')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('estado.estado')->label('Estado:')->badge()->color(function ($state) {
                     return $state === 'ACTIVO' ? 'success' : 'danger';  // Cambiar el color dependiendo del estado
-                }),
-                Tables\Columns\TextColumn::make('licencia.clase')->label('Licencia:')->badge(),
+                })->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('licencia.clase')->label('Licencia:')->badge()->searchable()->sortable(),
             ])
             ->filters([
                 //
+                // FILTRAR POR ESTADO DEL CONDUCTOR
+                Tables\Filters\SelectFilter::make('conductor_estado_id')
+                    ->label('Estado:')
+                    ->options(function () {
+                        return \App\Models\Conductor\Estado::pluck('estado', 'id_conductor_estado')->toArray();
+                    }),
+
+                    // FILTRAR POR TIPO DE LICENCIA DEL CONDUCTOR
+                Tables\Filters\SelectFilter::make('conductor_licencia_id')
+                ->label('Tipo de Licencia:')
+                ->options(function () {
+                    return \App\Models\Conductor\Licencia::pluck('clase', 'id_conductor_licencia')->toArray();
+                })
+                ->multiple(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
