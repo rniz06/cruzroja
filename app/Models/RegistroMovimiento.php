@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Observers\RegistroMovimientoObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 
+#[ObservedBy([RegistroMovimientoObserver::class])]
 class RegistroMovimiento extends Model
 {
     protected $table = "registro_movimientos";

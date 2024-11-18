@@ -55,7 +55,7 @@ class MovilResource extends Resource
                             ->createOptionForm([
                                 Forms\Components\TextInput::make('movil_tipo')->label('Tipo de Movíl:')->required(),
                             ]),
-                        Forms\Components\TextInput::make('km_actual')->label('Kilometraje Actual:')->required()->numeric()
+                        Forms\Components\TextInput::make('km_actual')->label('Kilometraje Actual:')->hiddenOn('edit')->required()->numeric()
                     ])->columns(2),
 
                 Forms\Components\Section::make()
