@@ -22,7 +22,7 @@ class MovilResource extends Resource
 
     protected static ?string $navigationLabel = 'Movíles';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'fluentui-vehicle-bus-16-o';
 
     // protected static ?string $navigationGroup = 'Moviles';
 
@@ -55,8 +55,12 @@ class MovilResource extends Resource
                             ->createOptionForm([
                                 Forms\Components\TextInput::make('movil_tipo')->label('Tipo de Movíl:')->required(),
                             ]),
-                        Forms\Components\TextInput::make('km_actual')->label('Kilometraje Actual:')->hiddenOn('edit')->required()->numeric()
-                    ])->columns(2),
+                        Forms\Components\TextInput::make('km_actual')->label('Kilometraje Actual:')->hiddenOn('edit')->required()->numeric()->placeholder('Introducir sin puntos ni comas'),
+
+                        Forms\Components\TextInput::make('movil_nro_chapa')->label('Chapa:')->minLength(6)->maxLength(10)->required()->placeholder('Ej: ABCD123'),
+
+                        Forms\Components\TextInput::make('movil_chasis')->label('Chasis:')->minLength(6)->maxLength(50)->required()->placeholder('Ej: ABCDE123456'),
+                    ])->columns(3),
 
                 Forms\Components\Section::make()
                     ->schema([
@@ -72,10 +76,12 @@ class MovilResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('tipo.movil_tipo')->label('Tipo:')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('combustible.tipo_combustible')->label('Combustible:')->badge()->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('movil_nro_chapa')->label('Chapa:'),
+                Tables\Columns\TextColumn::make('movil_chasis')->label('Chasis:'),
                 Tables\Columns\TextColumn::make('estado.movil_estado')->label('Estado:')->badge()->color(function ($state) {
                     return $state === 'ACTIVO' ? 'success' : 'danger';  // Cambiar el color dependiendo del estado
                 })->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('km_actual')->label('KM Actual:'),
+                Tables\Columns\TextColumn::make('km_actual')->label('KM Actual:')->numeric()->badge(),
             ])
             ->filters([
                 //
@@ -115,7 +121,7 @@ class MovilResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->select('id_movil', 'movil_combustible_id', 'movil_estado_id', 'movil_tipo_id', 'km_actual')
+            ->select('id_movil', 'movil_combustible_id', 'movil_estado_id', 'movil_tipo_id', 'km_actual', 'movil_nro_chapa', 'movil_chasis', 'observaciones')
             ->with(['combustible:id_movil_combustible,tipo_combustible', 'estado:id_movil_estado,movil_estado', 'tipo:id_movil_tipo,movil_tipo']);
     }
 

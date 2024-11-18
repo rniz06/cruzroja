@@ -21,7 +21,7 @@ class ConductorResource extends Resource
 
     protected static ?string $navigationLabel = 'Conductores';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'bxs-user-account';
 
     // protected static ?string $navigationGroup = 'Conductores';
 

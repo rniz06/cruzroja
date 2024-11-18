@@ -18,6 +18,8 @@ class Movil extends Model
         'movil_estado_id',
         'movil_tipo_id',
         'km_actual',
+        'movil_nro_chapa',
+        'movil_chasis',
         'observaciones',
     ];
 

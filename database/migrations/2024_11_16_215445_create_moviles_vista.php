@@ -22,6 +22,8 @@ VIEW `vista_moviles` AS
         `moviles_estados`.`movil_estado` AS `movil_estado`,
         `moviles_tipos`.`movil_tipo` AS `movil_tipo`,
         `moviles`.`km_actual` AS `km_actual`,
+        `moviles`.`movil_nro_chapa` AS `movil_nro_chapa`,
+        `moviles`.`movil_chasis` AS `movil_chasis`,
         `moviles`.`movil_combustible_id` AS `movil_combustible_id`,
         `moviles`.`movil_estado_id` AS `movil_estado_id`,
         `moviles`.`movil_tipo_id` AS `movil_tipo_id`

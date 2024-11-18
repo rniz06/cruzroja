@@ -22,7 +22,7 @@ class RegistroMovimientoResource extends Resource
 {
     protected static ?string $model = RegistroMovimiento::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'gmdi-app-registration-r';
 
     public static function form(Form $form): Form
     {
@@ -39,7 +39,7 @@ class RegistroMovimientoResource extends Resource
                             ->required(),
                         Forms\Components\Select::make('movil_id')
                             ->label('Movil:')
-                            ->options(Movil::all()->pluck('movil_tipo_id', 'id_movil'))
+                            ->options(Movil::all()->where('movil_estado_id', 1)->pluck('movil_tipo_id', 'id_movil'))
                             ->searchable()
                             ->preload()
                             ->required(),

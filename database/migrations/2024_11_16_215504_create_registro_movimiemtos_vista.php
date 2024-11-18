@@ -22,6 +22,8 @@ SELECT
     moviles_combustibles.tipo_combustible,
     moviles_estados.movil_estado,
     moviles_tipos.movil_tipo,
+    moviles.movil_nro_chapa,
+    moviles.movil_chasis,
     ciudades.ciudad AS ciudad,
     servicios.servicio AS nombre_servicio,
     servicios_clasificaciones.servicio_clasificacion AS clasificacion_servicio,
