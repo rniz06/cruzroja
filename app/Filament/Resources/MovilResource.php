@@ -41,6 +41,7 @@ class MovilResource extends Resource
                             ->required(),
                         Forms\Components\Select::make('movil_estado_id')
                             ->label('Estado')
+                            ->hiddenOn('create')
                             ->options(MovilEstado::all()->pluck('movil_estado', 'id_movil_estado'))
                             ->searchable()
                             ->preload()

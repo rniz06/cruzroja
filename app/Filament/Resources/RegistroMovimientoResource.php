@@ -10,6 +10,7 @@ use App\Models\Movil;
 use App\Models\RegistroMovimiento;
 use App\Models\Servicio;
 use App\Models\ServicioClasificacion;
+use App\Models\Vistas\MovilesVista;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -25,7 +26,7 @@ class RegistroMovimientoResource extends Resource
     protected static ?string $navigationIcon = 'gmdi-app-registration-r';
 
     public static function form(Form $form): Form
-    {
+    { 
         return $form
             ->schema([
                 //
@@ -39,7 +40,13 @@ class RegistroMovimientoResource extends Resource
                             ->required(),
                         Forms\Components\Select::make('movil_id')
                             ->label('Movil:')
-                            ->options(Movil::all()->where('movil_estado_id', 1)->pluck('movil_tipo_id', 'id_movil'))
+                            ->options(
+                                MovilesVista::all()
+                                    ->where('movil_estado', 'ACTIVO')
+                                    ->mapWithKeys(fn($movil) => [
+                                        $movil->id_movil => "{$movil->movil_nro_chapa} - {$movil->movil_tipo}"
+                                    ])
+                            )
                             ->searchable()
                             ->preload()
                             ->required(),
@@ -83,6 +90,7 @@ class RegistroMovimientoResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('conductor.nombre_completo')->label('Conductor:')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('movil.tipo.movil_tipo')->label('Movil:')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('movil.movil_nro_chapa')->label('Chapa:')->searchable()->sortable()->badge(),
                 Tables\Columns\TextColumn::make('ciudad.ciudad')->label('Ciudad:')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('servicio.servicio')->label('Servicio:')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('servicioClasificacion.servicio_clasificacion')->label('Clasificación:')->searchable()->sortable()->badge()->color('success'),
@@ -110,12 +118,12 @@ class RegistroMovimientoResource extends Resource
                         return \App\Models\Ciudad::pluck('ciudad', 'id_ciudad')->toArray();
                     })->searchable(),
 
-                    // FILTRAR POR SERVICIO
+                // FILTRAR POR SERVICIO
                 Tables\Filters\SelectFilter::make('servicio_id')
-                ->label('Servicio:')
-                ->options(function () {
-                    return \App\Models\Servicio::pluck('servicio', 'id_servicio')->toArray();
-                })->searchable(),
+                    ->label('Servicio:')
+                    ->options(function () {
+                        return \App\Models\Servicio::pluck('servicio', 'id_servicio')->toArray();
+                    })->searchable(),
 
                 // FILTRAR POR CLASIFICACION
                 Tables\Filters\SelectFilter::make('clasificacion_servicio_id')

@@ -36,7 +36,8 @@ class ConductorResource extends Resource
                         Forms\Components\TextInput::make('ci_conductor')->label('CI Conductor:')->placeholder('Ej: 1234567 (* Sin puntos ni comas.)')->numeric()->required(),
                         Forms\Components\Select::make('conductor_estado_id')
                             ->label('Estado')
-                            ->options(ConductorEstado::all()->pluck('estado', 'id_conductor_estado'))
+                            ->hiddenOn('create')
+                            ->options(ConductorEstado::all()->pluck('estado', 'id_conductor_estado'))                            
                             ->searchable()
                             ->preload()
                             ->required(),
@@ -46,7 +47,7 @@ class ConductorResource extends Resource
                             ->searchable()
                             ->preload()
                             ->required(),
-                    ])->columns(3),
+                    ])->columns(2),
             ]);
     }
 
@@ -70,13 +71,13 @@ class ConductorResource extends Resource
                         return \App\Models\Conductor\Estado::pluck('estado', 'id_conductor_estado')->toArray();
                     }),
 
-                    // FILTRAR POR TIPO DE LICENCIA DEL CONDUCTOR
+                // FILTRAR POR TIPO DE LICENCIA DEL CONDUCTOR
                 Tables\Filters\SelectFilter::make('conductor_licencia_id')
-                ->label('Tipo de Licencia:')
-                ->options(function () {
-                    return \App\Models\Conductor\Licencia::pluck('clase', 'id_conductor_licencia')->toArray();
-                })
-                ->multiple(),
+                    ->label('Tipo de Licencia:')
+                    ->options(function () {
+                        return \App\Models\Conductor\Licencia::pluck('clase', 'id_conductor_licencia')->toArray();
+                    })
+                    ->multiple(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -91,7 +92,7 @@ class ConductorResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->select('id_conductor', 'nombre_completo', 'ci_conductor', 'conductor_estado_id', 'conductor_licencia_id')
+            ->select('id_conductor', 'nombres', 'apellidos', 'nombre_completo', 'ci_conductor', 'conductor_estado_id', 'conductor_licencia_id')
             ->with(['estado:id_conductor_estado,estado', 'licencia:id_conductor_licencia,clase']);
     }
 
