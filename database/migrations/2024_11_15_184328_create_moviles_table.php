@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('movil_combustible_id')->nullable();
             $table->unsignedBigInteger('movil_estado_id')->nullable();
             $table->unsignedBigInteger('movil_tipo_id')->nullable();
-            $table->string('km_actual')->nullable();
+            $table->string('km_actual', 20)->nullable();
             $table->string('movil_nro_chapa', 10)->nullable();
             $table->string('movil_chasis', 100)->nullable();
             $table->text('observaciones')->nullable();

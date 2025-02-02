@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('clasificacion_servicio_id')->nullable();
             $table->unsignedBigInteger('usuario_id')->nullable();
             $table->dateTime('fecha_hora_salida');
-            $table->integer('km_inicial');
+            $table->string('km_inicial', 20);
             $table->string('destino')->nullable();
             $table->string('a_cargo')->nullable();
             $table->dateTime('fecha_hora_llegada');
