@@ -14,24 +14,15 @@ class MovilesTipoSeeder extends Seeder
     public function run(): void
     {
         DB::table('moviles_tipos')->insert([
-            'movil_tipo' => "AB111",
+            'movil_tipo' => "R2",
         ]);
 
         DB::table('moviles_tipos')->insert([
-            'movil_tipo' => "AB112",
+            'movil_tipo' => "R3",
         ]);
 
         DB::table('moviles_tipos')->insert([
-            'movil_tipo' => "AR114",
+            'movil_tipo' => "R4",
         ]);
-
-        DB::table('moviles_tipos')->insert([
-            'movil_tipo' => "ARF113",
-        ]);
-
-        DB::table('moviles_tipos')->insert([
-            'movil_tipo' => "AC110",
-        ]);
-
     }
 }

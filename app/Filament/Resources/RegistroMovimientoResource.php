@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Illuminate\Support\Str;
 use App\Filament\Resources\RegistroMovimientoResource\Pages;
 use App\Filament\Resources\RegistroMovimientoResource\RelationManagers;
 use App\Models\Ciudad;
@@ -13,6 +14,8 @@ use App\Models\ServicioClasificacion;
 use App\Models\Vistas\MovilesVista;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -26,7 +29,7 @@ class RegistroMovimientoResource extends Resource
     protected static ?string $navigationIcon = 'gmdi-app-registration-r';
 
     public static function form(Form $form): Form
-    { 
+    {
         return $form
             ->schema([
                 //
@@ -46,7 +49,12 @@ class RegistroMovimientoResource extends Resource
                                     ->mapWithKeys(fn($movil) => [
                                         $movil->id_movil => "{$movil->movil_nro_chapa} - {$movil->movil_tipo}"
                                     ])
-                            )
+                            )->live()
+                            // Actualizar automaticamente el campo km_inicial segun el movil seleccionado
+                            ->afterStateUpdated(function (Set $set, Get $get){
+                                $movil = Movil::where('id_movil', $get('movil_id'))->first();
+                                $set('km_inicial', $movil->km_actual);
+                            })
                             ->searchable()
                             ->preload()
                             ->required(),
@@ -74,12 +82,12 @@ class RegistroMovimientoResource extends Resource
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\DateTimePicker::make('fecha_hora_salida')->label('Hora Salida:')->required(),
-                        Forms\Components\TextInput::make('km_inicial')->label('Km Inicial:')->numeric()->required(),
+                        Forms\Components\TextInput::make('km_inicial')->label('Km Inicial:')->readOnly()->numeric()->required(),
                         Forms\Components\TextInput::make('a_cargo')->label('A Cargo:')->required(),
                         Forms\Components\DateTimePicker::make('fecha_hora_llegada')->label('Hora Llegada')->required(),
                         Forms\Components\TextInput::make('km_final')->label('Km Final:')->numeric()->required(),
 
-                        Forms\Components\Textarea::make('observaciones')->label('Observaciones')->columnSpan(3)
+                        Forms\Components\Textarea::make('observaciones')->label('Observaciones')->columnSpan(3),
                     ])->columns(3)
             ]);
     }
@@ -158,7 +166,8 @@ class RegistroMovimientoResource extends Resource
                 'a_cargo',
                 'fecha_hora_llegada',
                 'km_final',
-                'km_recorrido'
+                'km_recorrido',
+                'observaciones'
             )
             ->with([
                 'conductor:id_conductor,nombre_completo',
