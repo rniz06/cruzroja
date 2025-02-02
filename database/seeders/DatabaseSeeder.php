@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
             MovilesCombustibleSeeder::class,
             ServicioSeeder::class,
             ServiciosClasficacionSeeder::class,
+            VoluntarioSexo::class,
+            VoluntarioEstado::class
         ]);
     }
 }

@@ -25,4 +25,10 @@ class Ciudad extends Model
     {
         return $this->hasMany(RegistroMovimiento::class);
     }
+
+    // Relacion uno a muchos inversa con la tabla de voluntarios
+    public function voluntarios()
+    {
+        return $this->hasMany(Voluntario::class);
+    }
 }
