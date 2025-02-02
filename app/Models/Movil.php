@@ -46,4 +46,10 @@ class Movil extends Model
     {
         return $this->hasMany(RegistroMovimiento::class);
     }
+
+    // Relacion uno a muchos inversa con la tabla de guardias
+    public function guardias()
+    {
+        return $this->hasMany(Guardia::class);  // Relación "uno a muchos" con la tabla de guardias
+    }
 }

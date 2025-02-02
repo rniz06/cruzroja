@@ -52,4 +52,22 @@ class Voluntario extends Model
     {
         return $this->belongsTo(Sexo::class, 'sexo_id');
     }
+
+    /**
+     * Relación de "aCargo" a "Guardia" (uno a muchos).
+     * Una voluntario puede tener muchos registros en la tabla guardias.
+     */
+    public function guardiasACargo()
+    {
+        return $this->hasMany(Guardia::class);
+    }
+
+    /**
+     * Relación de "guardiasRevision" a "Guardia" (uno a muchos).
+     * Una voluntario puede tener muchos registros en la tabla guardias.
+     */
+    public function guardiasRevision()
+    {
+        return $this->hasMany(Guardia::class);
+    }
 }
