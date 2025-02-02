@@ -264,6 +264,13 @@ class CiudadSeeder extends Seeder
              'PUERTO CASADO',
              'BAHIA NEGRA',
              'CARMELO PERALTA',
+             'ALTO PARANA',
+             'CORDILLERA',
+             'GUAIRA',
+             'ITAPUA',
+             'MISIONES',
+             'ÑEEMBUCU',
+             'SAN PEDRO',
         ];
 
         // Iterar sobre el array de ciudades y insertar cada una en la base de datos
