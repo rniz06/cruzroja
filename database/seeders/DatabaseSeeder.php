@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
             ServicioSeeder::class,
             ServiciosClasficacionSeeder::class,
             VoluntarioSexo::class,
-            VoluntarioEstado::class
+            VoluntarioEstado::class,
+            GuardiaItemSeeder::class
         ]);
     }
 }

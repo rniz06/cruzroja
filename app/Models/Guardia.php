@@ -32,6 +32,22 @@ class Guardia extends Model
         'carga_combustible' => 'boolean'
     ];
 
+
+    // Para el recurso Guardia De Filament
+    protected static function booted()
+    {
+        static::saved(function ($guardia) {
+            if (request()->has('itemControles')) {
+                foreach (request()->input('itemControles') as $itemId => $data) {
+                    $guardia->itemControles()->updateOrCreate(
+                        ['guardia_item_id' => $itemId],
+                        ['verificacion' => $data['verificacion']]
+                    );
+                }
+            }
+        });
+    }
+
     public function itemControles(): HasMany
     {
         return $this->hasMany(ItemControl::class, 'guardia_id');

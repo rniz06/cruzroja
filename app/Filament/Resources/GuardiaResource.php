@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\GuardiaResource\Pages;
 use App\Filament\Resources\GuardiaResource\RelationManagers;
 use App\Models\Guardia;
+use App\Models\Guardia\Item;
 use App\Models\Vistas\MovilesVista;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -23,6 +24,28 @@ class GuardiaResource extends Resource
 
     public static function form(Form $form): Form
     {
+        // Obtenemos todos los items disponibles
+        $items = Item::all();
+
+        $itemFields = [];
+        
+        foreach ($items as $item) {
+            $itemFields[] = Forms\Components\Select::make("itemControles.{$item->id_guardia_item}.verificacion")
+                ->label($item->item)
+                ->options([
+                    'Si' => 'Si',
+                    'No' => 'No',
+                    'Bajo' => 'Bajo',
+                    'Normal' => 'Normal',
+                    'Falta' => 'Falta',
+                    'Dañado' => 'Dañado',
+                    'En Llanta' => 'En Llanta',
+                ])
+                ->default('Si')
+                ->reactive()
+                ->columnSpan(1);
+        }
+
         return $form
             ->schema([
                 Forms\Components\Section::make()
@@ -77,26 +100,17 @@ class GuardiaResource extends Resource
                             })->suffix('GS'),
                     ])->columns(3),
 
-                Forms\Components\Section::make()
+                // Una única card para todos los items
+                Forms\Components\Card::make()
                     ->schema([
-                        // Repeater para los controles de items
-                        Forms\Components\Repeater::make('itemControles')
-                            ->relationship()
-                            ->schema([
-                                Forms\Components\Select::make('guardia_item_id')
-                                    ->relationship('item', 'item')
-                                    ->required(),
-                                Forms\Components\Select::make('verificacion')
-                                    ->options([
-                                        'Si' => 'Si',
-                                        'No' => 'No',
-                                        'Bajo' => 'Bajo',
-                                        'Normal' => 'Normal',
-                                        'Falta' => 'Falta',
-                                        'Dañado' => 'Dañado',
-                                    ])
-                                    ->required()->columnSpanFull(),
-                            ])
+                        Forms\Components\Grid::make(4)
+                            ->schema($itemFields)
+                    ])
+                    ->columnSpan('full')
+                    ->heading('Items de Control'),
+                    Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\Textarea::make('observaciones'),                        
                     ])
             ]);
     }
