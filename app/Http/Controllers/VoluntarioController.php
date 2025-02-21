@@ -7,6 +7,7 @@ use App\Http\Requests\Voluntario\UpdateVoluntarioRequest;
 use App\Models\Ciudad;
 use App\Models\Pais;
 use App\Models\Vistas\VtVoluntario;
+use App\Models\Vistas\VtVoluntarioContacto;
 use App\Models\Voluntario;
 use App\Models\Voluntario\Estado;
 use App\Models\Voluntario\EstadoCivil;
@@ -76,9 +77,10 @@ class VoluntarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Voluntario $voluntario)
+    public function show(VtVoluntario $voluntario)
     {
-        //
+        $contacto = VtVoluntarioContacto::where('voluntario_id' ,$voluntario->id_voluntario)->first();
+        return view('voluntarios.show', compact('voluntario', 'contacto'));
     }
 
     /**

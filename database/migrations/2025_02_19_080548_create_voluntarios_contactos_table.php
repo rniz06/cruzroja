@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('direccion', 75);
             $table->unsignedBigInteger('departamento_id')->nullable();
             $table->unsignedBigInteger('ciudad_id')->nullable();
-            $table->string('correo_electronico', 40);
+            $table->string('correo_electronico', 40)->nullable();
             $table->string('tel_particular', 20);
-            $table->string('tel_trabajo', 20);
-            $table->string('celular', 20);
+            $table->string('tel_trabajo', 20)->nullable();
+            $table->string('celular', 20)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

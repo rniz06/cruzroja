@@ -62,6 +62,10 @@
                         <td>{{ $voluntario->voluntario_estado ?? 'N/A' }}</td>
                         <td>
                             <x-dropdown>
+                                @if (auth()->user()->can('Voluntarios Ver'))
+                                    <x-slot name="show">{{ route('voluntarios.show', $voluntario->id_voluntario) }}</x-slot>
+                                @endif
+
                                 @if (auth()->user()->can('Voluntarios Editar'))
                                     <x-slot name="edit">{{ route('voluntarios.edit', $voluntario->id_voluntario) }}</x-slot>
                                 @endif

@@ -40,6 +40,8 @@ class UserRoleYPermisoSeeder extends Seeder
             'Voluntarios Ver',
             'Voluntarios Editar',
             'Voluntarios Eliminar',
+            'Voluntarios Agregar Contacto',
+            'Voluntarios Agregar Contacto Emergencia',
 
             'Conductores Listar',
             'Conductores Crear',

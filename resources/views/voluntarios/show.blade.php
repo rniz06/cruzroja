@@ -2,8 +2,8 @@
 
 {{-- Customize layout sections --}}
 
-@section('subtitle', 'Personal')
-@section('content_header_title', 'Personal')
+@section('subtitle', 'Voluntario')
+@section('content_header_title', 'Voluntario')
 @section('content_header_subtitle', 'Detalles')
 
 {{-- Content body: main page content --}}
@@ -19,25 +19,17 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Detalles del Personal</h3>
+            <h3 class="card-title">Detalles del Voluntario</h3>
             <div class="card-tools">
-                <a href="{{ route('personal.index') }}" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i>
+                <a href="{{ route('voluntarios.index') }}" class="btn btn-sm btn-secondary"><i class="fas fa-arrow-left"></i>
                     Volver</a>
-                @can('Personal Editar')
-                    <a href="{{ route('personal.edit', $personal->idpersonal) }}" class="btn btn-sm btn-warning"><i
-                            class="fas fa-edit"></i> Actualizar</a>
-                @endcan
-                @can('Personal Generar Ficha')
-                    <a href="{{ route('personal.fichapdf', $personal->idpersonal) }}" class="btn btn-sm btn-success"><i
-                            class="fas fa-file-export"></i> Exportar</a>
-                @endcan
-                @can('Personal Agregar Contacto')
+                @can('Voluntarios Agregar Contacto')
                     <!-- Button Modal Contacto -->
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#staticBackdrop">
                         <i class="fas fa-plus"></i> Contacto
                     </button>
                 @endcan
-                @can('Personal Agregar Contacto Emergencia')
+                @can('Voluntarios Agregar Contacto Emergencia')
                     <!-- Button Modal Contacto Emergencia -->
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#contactoemergencia">
                         <i class="fas fa-plus"></i> Emergencia
@@ -48,111 +40,79 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
-                    {{-- <div class="row">
-                        <div class="col-12 col-sm-4">
-                            <div class="info-box bg-light">
-                                <div class="info-box-content">
-                                    <span class="info-box-text text-center text-muted">Estimated budget</span>
-                                    <span class="info-box-number text-center text-muted mb-0">2300</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <div class="info-box bg-light">
-                                <div class="info-box-content">
-                                    <span class="info-box-text text-center text-muted">Total amount spent</span>
-                                    <span class="info-box-number text-center text-muted mb-0">2000</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <div class="info-box bg-light">
-                                <div class="info-box-content">
-                                    <span class="info-box-text text-center text-muted">Estimated project duration</span>
-                                    <span class="info-box-number text-center text-muted mb-0">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+
                     <div class="row">
                         <div class="col-6">
                             <label for="">Nombre Completo:</label>
-                            <p class="form-control">{{ $personal->nombrecompleto ?? 'N/A' }}</p>
+                            <p class="form-control">{{ $voluntario->nombres ?? 'N/A' }}
+                                {{ $voluntario->apellido_paterno ?? '' }} {{ $voluntario->apellido_materno ?? '' }}</p>
                         </div>
 
                         <div class="col-6">
-                            <label for="">Codigo:</label>
-                            <p class="form-control">{{ $personal->codigo ?? 'N/A' }}</p>
+                            <label for="">Cédula:</label>
+                            <p class="form-control">{{ $voluntario->cedula ?? 'N/A' }}</p>
                         </div>
 
                         <div class="col-6">
-                            <label for="">Documento:</label>
-                            <p class="form-control">{{ $personal->documento ?? 'N/A' }}</p>
+                            <label for="">Fecha de Nacimiento:</label>
+                            <p class="form-control">{{ date('d/m/Y', strtotime($voluntario->fecha_nacimiento)) }}</p>
                         </div>
 
                         <div class="col-6">
-                            <label for="">Fecha Juramento:</label>
-                            <p class="form-control">{{ $personal->fecha_juramento ?? 'N/A' }}</p>
+                            <label for="">Edad:</label>
+                            <p class="form-control">{{ $voluntario->edad ?? 'N/A' }}</p>
                         </div>
 
                         <div class="col-6">
-                            <label for="">Categoría:</label>
-                            <p class="form-control">{{ $personal->categoria ?? 'N/A' }}</p>
+                            <label for="">Lugar de Nacimiento:</label>
+                            <p class="form-control">{{ $voluntario->lugar_nacimiento ?? 'N/A' }}</p>
                         </div>
 
                         <div class="col-6">
-                            <label for="">Estado:</label>
-                            <p class="form-control">{{ $personal->estado ?? 'N/A' }}</p>
-                        </div>
-
-                        <div class="col-6">
-                            <label for="">Pais:</label>
-                            <p class="form-control">{{ $personal->pais ?? 'N/A' }}</p>
+                            <label for="">Nacionalidad:</label>
+                            <p class="form-control">{{ $voluntario->nacionalidad ?? 'N/A' }}</p>
                         </div>
 
                         <div class="col-6">
                             <label for="">Sexo:</label>
-                            <p class="form-control">{{ $personal->sexo ?? 'N/A' }}</p>
+                            <p class="form-control">{{ $voluntario->sexo ?? 'N/A' }}</p>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="">Estado Civil:</label>
+                            <p class="form-control">{{ $voluntario->estado_civil ?? 'N/A' }}</p>
                         </div>
 
                         <div class="col-6">
                             <label for="">Grupo Sanguineo:</label>
-                            <p class="form-control">{{ $personal->grupo_sanguineo ?? 'N/A' }}</p>
+                            <p class="form-control">{{ $voluntario->grupo_sanguineo ?? 'N/A' }}</p>
                         </div>
 
                         <div class="col-6">
-                            <label for="">Compañia:</label>
-                            <p class="form-control">{{ $personal->compania ?? 'N/A' }}</p>
+                            <label for="">Estado:</label>
+                            <p class="form-control">{{ $voluntario->voluntario_estado ?? 'N/A' }}</p>
                         </div>
 
-                        <div class="col-6">
-                            <label for="">Estado actualizar:</label>
-                            <p class="form-control">{{ $personal->estado_actualizar ?? 'N/A' }}</p>
-                        </div>
-
-                        <div class="col-6">
-                            <label for="">Ultima actualización:</label>
-                            <p class="form-control">{{ date('d/m/Y', strtotime($personal->ultima_actualizacion)) }}</p>
-                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-                    <h4 class="text-secondary"><i class="fas fa-address-book"></i> Contactos:</h4>
+                    <h4 class="text-secondary"><i class="fas fa-address-book"></i> Contacto:</h4>
                     <ul class="list-unstyled">
                         <li>
-                            @forelse ($contactos as $contacto)
-                                <p class="btn-link text-secondary">{{ $contacto->tipo_contacto ?? 'N/A' }} :
-                                    {{ $contacto->contacto ?? 'N/A' }}</p>
-                            @empty
-                                <p class="btn-link text-secondary">Sin datos...</p>
-                            @endforelse
+                            <p class="btn-link text-secondary">Dirección : {{ $contacto->direccion ?? 'N/A' }}</p>
+                            <p class="btn-link text-secondary">Departamento : {{ $contacto->departamento ?? 'N/A' }}</p>
+                            <p class="btn-link text-secondary">Ciudad : {{ $contacto->ciudad ?? 'N/A' }}</p>
+                            <p class="btn-link text-secondary">Correo : {{ $contacto->correo_electronico ?? 'N/A' }}</p>
+                            <p class="btn-link text-secondary">Tel. Particular : {{ $contacto->tel_particular ?? 'N/A' }}</p>
+                            <p class="btn-link text-secondary">Tel. Trábajo : {{ $contacto->tel_trabajo ?? 'N/A' }}</p>
+                            <p class="btn-link text-secondary">Celular : {{ $contacto->celular ?? 'N/A' }}</p>
                         </li>
                     </ul>
 
                     <h4 class="text-secondary"><i class="fas fa-address-book"></i> Contactos de Emergencia:</h4>
                     <ul class="list-unstyled">
                         <li>
-                            @forelse ($contactos_emergencias as $contacto_emergencia)
+                            {{-- @forelse ($contactos_emergencias as $contacto_emergencia)
                                 <p class="btn-link text-secondary">{{ $contacto_emergencia->parentesco ?? 'N/A' }} :
                                     {{ $contacto_emergencia->nombre_contacto ?? 'N/A' }}
                                     <br>
@@ -161,7 +121,7 @@
                                 </p>
                             @empty
                                 <p class="btn-link text-secondary">Sin datos...</p>
-                            @endforelse
+                            @endforelse --}}
                         </li>
                     </ul>
                 </div>
@@ -170,7 +130,7 @@
         <!-- /.card-body -->
 
         <!-- Modal add contacto -->
-        <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+        {{-- <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -214,10 +174,10 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Modal add contacto emergencia -->
-        <div class="modal fade" id="contactoemergencia" data-backdrop="static" tabindex="-1" role="dialog"
+        {{-- <div class="modal fade" id="contactoemergencia" data-backdrop="static" tabindex="-1" role="dialog"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -294,7 +254,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @stop
 
