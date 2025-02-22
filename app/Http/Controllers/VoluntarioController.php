@@ -12,7 +12,9 @@ use App\Models\Vistas\VtVoluntarioContactoEmergencia;
 use App\Models\Voluntario;
 use App\Models\Voluntario\Estado;
 use App\Models\Voluntario\EstadoCivil;
+use App\Models\Voluntario\GradoEstudio;
 use App\Models\Voluntario\GrupoSanguineo;
+use App\Models\Voluntario\Profesion;
 use App\Models\Voluntario\Sexo;
 use Illuminate\Http\Request;
 
@@ -48,7 +50,9 @@ class VoluntarioController extends Controller
         $sexos = Sexo::select('id_voluntario_sexo', 'sexo')->get();
         $estadoCivil = EstadoCivil::select('idvoluntario_estado_civil', 'estado_civil')->get();
         $grupoSanguineos = GrupoSanguineo::select('idvoluntario_grupo_sanguineo', 'grupo_sanguineo')->get();
-        return view('voluntarios.create', compact('ciudades', 'paises', 'sexos', 'estadoCivil', 'grupoSanguineos'));
+        $grados_estudios = GradoEstudio::select('idvoluntario_grado_estudio', 'grado_estudio')->get();
+        $profesiones = Profesion::select('id_voluntario_profesion', 'profesion')->get();
+        return view('voluntarios.create', compact('ciudades', 'paises', 'sexos', 'estadoCivil', 'grupoSanguineos', 'grados_estudios', 'profesiones'));
     }
 
     /**
@@ -68,6 +72,8 @@ class VoluntarioController extends Controller
             'sexo_id' => $request->sexo_id,
             'estado_civil_id' => $request->estado_civil_id,
             'grupo_sanguineo_id' => $request->grupo_sanguineo_id,
+            'grado_estudio_id' => $request->grado_estudio_id,
+            'profesion_id' => $request->profesion_id,
             'estado_id' => 1, // ACTIVO POR DEFECTO
         ]);
 
@@ -96,7 +102,9 @@ class VoluntarioController extends Controller
         $estadoCivil = EstadoCivil::select('idvoluntario_estado_civil', 'estado_civil')->get();
         $grupoSanguineos = GrupoSanguineo::select('idvoluntario_grupo_sanguineo', 'grupo_sanguineo')->get();
         $estados = Estado::select('id_voluntario_estado', 'voluntario_estado')->get();
-        return view('voluntarios.edit', compact('voluntario','ciudades', 'paises', 'sexos', 'estadoCivil', 'grupoSanguineos', 'estados'));
+        $grados_estudios = GradoEstudio::select('idvoluntario_grado_estudio', 'grado_estudio')->get();
+        $profesiones = Profesion::select('id_voluntario_profesion', 'profesion')->get();
+        return view('voluntarios.edit', compact('voluntario','ciudades', 'paises', 'sexos', 'estadoCivil', 'grupoSanguineos', 'estados', 'grados_estudios', 'profesiones'));
     }
 
     /**
@@ -115,6 +123,8 @@ class VoluntarioController extends Controller
             'sexo_id' => $request->sexo_id,
             'estado_civil_id' => $request->estado_civil_id,
             'grupo_sanguineo_id' => $request->grupo_sanguineo_id,
+            'grado_estudio_id' => $request->grado_estudio_id,
+            'profesion_id' => $request->profesion_id,
             'estado_id' => $request->estado_id,
         ]);
 

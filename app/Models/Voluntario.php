@@ -33,6 +33,8 @@ class Voluntario extends Model implements Auditable
         'estado_civil_id',
         'grupo_sanguineo_id',
         'estado_id',
+        'grado_estudio_id',
+        'profesion_id',
     ];
 
     public function lugarNacimiento()
@@ -63,6 +65,16 @@ class Voluntario extends Model implements Auditable
     public function estado()
     {
         return $this->belongsTo(Estado::class, 'estado_id');
+    }
+
+    public function gradoEstudio()
+    {
+        return $this->belongsTo(Estado::class, 'grado_estudio_id');
+    }
+
+    public function profesion()
+    {
+        return $this->belongsTo(Estado::class, 'profesion_id');
     }
 
     public function contactosEmergencias()

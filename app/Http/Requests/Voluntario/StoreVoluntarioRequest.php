@@ -32,7 +32,9 @@ class StoreVoluntarioRequest extends FormRequest
             'nacionalidad_id' => 'required',
             'sexo_id' => 'required',
             'estado_civil_id' => 'required',
-            'grupo_sanguineo_id' => 'required'
+            'grupo_sanguineo_id' => 'required',
+            'grado_estudio_id' => 'required',
+            'profesion_id' => 'required'
         ];
     }
 }

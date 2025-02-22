@@ -25,6 +25,8 @@ return new class extends Migration
             $table->unsignedBigInteger('estado_civil_id')->nullable();
             $table->unsignedBigInteger('grupo_sanguineo_id')->nullable();
             $table->unsignedBigInteger('estado_id')->nullable();
+            $table->unsignedBigInteger('grado_estudio_id')->nullable();
+            $table->unsignedBigInteger('profesion_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -34,6 +36,8 @@ return new class extends Migration
             $table->foreign('estado_civil_id')->references('idvoluntario_estado_civil')->on('voluntarios_estado_civil')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('grupo_sanguineo_id')->references('idvoluntario_grupo_sanguineo')->on('voluntarios_grupo_sanguineo')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('estado_id')->references('id_voluntario_estado')->on('voluntarios_estados')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('grado_estudio_id')->references('idvoluntario_grado_estudio')->on('voluntarios_grado_estudios')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('profesion_id')->references('id_voluntario_profesion')->on('voluntarios_profesiones')->onUpdate('cascade')->onDelete('set null');
         });
     }
 

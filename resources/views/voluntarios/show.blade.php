@@ -89,6 +89,16 @@
                         </div>
 
                         <div class="col-6">
+                            <label for="">Grado de Estudio:</label>
+                            <p class="form-control">{{ $voluntario->grado_estudio ?? 'N/A' }}</p>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="">Profesión:</label>
+                            <p class="form-control">{{ $voluntario->profesion ?? 'N/A' }}</p>
+                        </div>
+
+                        <div class="col-6">
                             <label for="">Estado:</label>
                             <p class="form-control">{{ $voluntario->voluntario_estado ?? 'N/A' }}</p>
                         </div>

@@ -150,7 +150,35 @@
                             @endforeach
                         </select>
                     </div>
-                </div>                
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Grado De Estudio:</label>
+                    <div class="col-sm-10">
+                        <select name="grado_estudio_id" class="form-control" id="inputEmail3" required>
+                            <option>Seleccionar...</option>
+                            @foreach ($grados_estudios as $grado_estudio)
+                                <option value="{{ $grado_estudio->idvoluntario_grado_estudio }}">
+                                    {{ $grado_estudio->grado_estudio ?? 'N/A' }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Profesión:</label>
+                    <div class="col-sm-10">
+                        <select name="profesion_id" id="profesion_id" class="form-control" required>
+                            <option>Seleccionar...</option>
+                            @foreach ($profesiones as $profesion)
+                                <option value="{{ $profesion->id_voluntario_profesion }}">
+                                    {{ $profesion->profesion ?? 'N/A' }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
             </div>
             <!-- /.card-body -->
@@ -193,6 +221,14 @@
 
         $(document).ready(function() {
             $('#nacionalidad_id').select2({
+                placeholder: 'Seleccionar...',
+                language: "es",
+
+            });
+        });
+
+        $(document).ready(function() {
+            $('#profesion_id').select2({
                 placeholder: 'Seleccionar...',
                 language: "es",
 

@@ -33,6 +33,8 @@ class UpdateVoluntarioRequest extends FormRequest
             'sexo_id' => 'required',
             'estado_civil_id' => 'required',
             'grupo_sanguineo_id' => 'required',
+            'grado_estudio_id' => 'required',
+            'profesion_id' => 'required',
             'estado_id' => 'required'
         ];
     }

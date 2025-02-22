@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             VoluntarioSexoSeeder::class,
             VoluntarioGrupoSanguineoSeeder::class,
             VoluntarioParentescoSeeder::class,
+            VoluntarioGradoEstudioSeeder::class,
+            VoluntarioProfesion::class,
         ]);
     }
 }
