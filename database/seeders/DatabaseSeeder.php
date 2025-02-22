@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             VoluntarioEstadoCivilSeeder::class,
             VoluntarioSexoSeeder::class,
             VoluntarioGrupoSanguineoSeeder::class,
+            VoluntarioParentescoSeeder::class,
         ]);
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Ciudad;
 use App\Models\Pais;
 use App\Models\Vistas\VtVoluntario;
 use App\Models\Vistas\VtVoluntarioContacto;
+use App\Models\Vistas\VtVoluntarioContactoEmergencia;
 use App\Models\Voluntario;
 use App\Models\Voluntario\Estado;
 use App\Models\Voluntario\EstadoCivil;
@@ -80,7 +81,8 @@ class VoluntarioController extends Controller
     public function show(VtVoluntario $voluntario)
     {
         $contacto = VtVoluntarioContacto::where('voluntario_id' ,$voluntario->id_voluntario)->first();
-        return view('voluntarios.show', compact('voluntario', 'contacto'));
+        $contactos_emergencias = VtVoluntarioContactoEmergencia::where('voluntario_id' ,$voluntario->id_voluntario)->get();
+        return view('voluntarios.show', compact('voluntario', 'contacto', 'contactos_emergencias'));
     }
 
     /**

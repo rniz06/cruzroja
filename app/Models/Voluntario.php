@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Voluntario\ContactoEmergencia;
 use App\Models\Voluntario\Estado;
 use App\Models\Voluntario\EstadoCivil;
 use App\Models\Voluntario\GrupoSanguineo;
@@ -62,6 +63,11 @@ class Voluntario extends Model implements Auditable
     public function estado()
     {
         return $this->belongsTo(Estado::class, 'estado_id');
+    }
+
+    public function contactosEmergencias()
+    {
+        return $this->hasMany(ContactoEmergencia::class);
     }
 
     /**
