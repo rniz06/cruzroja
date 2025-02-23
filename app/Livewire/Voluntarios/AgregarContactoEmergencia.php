@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class AgregarContactoEmergencia extends Component
 {
-    #[Validate('required')] 
+    #[Validate('required')]
     public $voluntario_id = '';
 
     #[Validate('required|string|max:50')] 

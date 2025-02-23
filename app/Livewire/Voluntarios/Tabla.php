@@ -24,6 +24,14 @@ class Tabla extends Component
     public $estado = "";
     public $paginado = 5;
 
+    // Actualizar una de las propiedades de búsqueda o paginación
+    public function updating($key)
+    {
+        if (in_array($key, ['nombres', 'cedula', 'fecha_nacimiento', 'edad', 'lugar_nacimiento', 'nacionalidad', 'sexo', 'estado_civil', 'grupo_sanguineo', 'estado'])) {
+            $this->resetPage();
+        }
+    }
+
     public function render()
     {
         $voluntarios = VtVoluntario::buscadorNombres($this->nombres)

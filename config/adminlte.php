@@ -322,6 +322,12 @@ return [
             'can' => 'Voluntarios Listar',
             'icon' => 'fas fa-male',
         ],
+        [
+            'text' => 'Conductores',
+            'route' => 'conductores.index',
+            'can' => 'Conductores Listar',
+            'icon' => 'fas fa-id-card',
+        ],
         // [
         //     'text' => 'Personales',
         //     'icon' => 'fas fa-portrait',

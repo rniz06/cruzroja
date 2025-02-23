@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             VoluntarioParentescoSeeder::class,
             VoluntarioGradoEstudioSeeder::class,
             VoluntarioProfesion::class,
+            ConductorEstadoSeeder::class,
+            ConductorLicenciaSeeder::class,
         ]);
     }
 }

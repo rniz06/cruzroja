@@ -2,6 +2,7 @@
 
 //use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsuarioController;
@@ -37,6 +38,21 @@ Route::middleware('auth')->group(function () {
         Route::get('voluntarios/{voluntario}/edit', 'edit')->name('voluntarios.edit');
         Route::put('voluntarios/{voluntario}', 'update')->name('voluntarios.update');
         Route::delete('voluntarios/{voluntario}', 'destroy')->name('voluntarios.destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Modulo Conductores
+    |--------------------------------------------------------------------------
+    */
+    Route::controller(ConductorController::class)->group(function () {
+        Route::get('conductores', 'index')->name('conductores.index');
+        Route::get('conductores/create', 'create')->name('conductores.create');
+        Route::post('conductores/store', 'store')->name('conductores.store');
+        // Route::get('conductores/{conductor}', 'show')->name('conductores.show');
+        Route::get('conductores/{conductor}/edit', 'edit')->name('conductores.edit');
+        Route::put('conductores/{conductor}', 'update')->name('conductores.update');
+        Route::delete('conductores/{conductor}', 'destroy')->name('conductores.destroy');
     });
 
     /*
