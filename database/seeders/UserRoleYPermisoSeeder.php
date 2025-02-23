@@ -54,6 +54,7 @@ class UserRoleYPermisoSeeder extends Seeder
             'Moviles Ver',
             'Moviles Editar',
             'Moviles Eliminar',
+            'Moviles Observaciones',
 
             'Registro Movimientos Listar',
             'Registro Movimientos Crear',

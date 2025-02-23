@@ -78,5 +78,4 @@
             </select></center>
         {{ $conductores->links() }}
     </div>
-    @livewire('conductores.create')
 </div>

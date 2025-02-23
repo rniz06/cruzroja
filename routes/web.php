@@ -3,6 +3,7 @@
 //use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\ConductorController;
+use App\Http\Controllers\MovilController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsuarioController;
@@ -53,6 +54,21 @@ Route::middleware('auth')->group(function () {
         Route::get('conductores/{conductor}/edit', 'edit')->name('conductores.edit');
         Route::put('conductores/{conductor}', 'update')->name('conductores.update');
         Route::delete('conductores/{conductor}', 'destroy')->name('conductores.destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Modulo Moviles
+    |--------------------------------------------------------------------------
+    */
+    Route::controller(MovilController::class)->group(function () {
+        Route::get('moviles', 'index')->name('moviles.index');
+        Route::get('moviles/create', 'create')->name('moviles.create');
+        Route::post('moviles/store', 'store')->name('moviles.store');
+        Route::get('moviles/{movil}', 'show')->name('moviles.show');
+        Route::get('moviles/{movil}/edit', 'edit')->name('moviles.edit');
+        Route::put('moviles/{movil}', 'update')->name('moviles.update');
+        Route::delete('moviles/{movil}', 'destroy')->name('moviles.destroy');
     });
 
     /*

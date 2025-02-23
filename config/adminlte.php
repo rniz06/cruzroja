@@ -328,6 +328,12 @@ return [
             'can' => 'Conductores Listar',
             'icon' => 'fas fa-id-card',
         ],
+        [
+            'text' => 'Móviles',
+            'route' => 'moviles.index',
+            'can' => 'Moviles Listar',
+            'icon' => 'fas fa-car-side',
+        ],
         // [
         //     'text' => 'Personales',
         //     'icon' => 'fas fa-portrait',

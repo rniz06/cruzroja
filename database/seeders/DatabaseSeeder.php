@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
             VoluntarioProfesion::class,
             ConductorEstadoSeeder::class,
             ConductorLicenciaSeeder::class,
+            MovilTipoSeeder::class,
+            MovilCombustibleSeeder::class,
+            MovilEstadoSeeder::class,
         ]);
     }
 }
