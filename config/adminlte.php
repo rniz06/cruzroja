@@ -320,7 +320,7 @@ return [
             'text' => 'Voluntarios',
             'route' => 'voluntarios.index',
             'can' => 'Voluntarios Listar',
-            'icon' => 'fas fa-male',
+            'icon' => 'fas fa-people-arrows',
         ],
         [
             'text' => 'Conductores',
