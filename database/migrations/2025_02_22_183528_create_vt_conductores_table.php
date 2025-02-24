@@ -25,6 +25,7 @@ return new class extends Migration
                 v.nombres,
                 v.apellido_paterno,
                 v.apellido_materno,
+                CONCAT(v.nombres, ' ', v.apellido_paterno, ' ', v.apellido_materno) AS nombre_completo,
                 v.cedula,
                 v.edad,
                 cl.licencia,

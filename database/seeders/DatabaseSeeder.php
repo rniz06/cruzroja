@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             MovilTipoSeeder::class,
             MovilCombustibleSeeder::class,
             MovilEstadoSeeder::class,
+            ServicioSeeder::class,
         ]);
     }
 }

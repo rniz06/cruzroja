@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('estado_id')->nullable();
             $table->unsignedBigInteger('tipo_id')->nullable();
             $table->string('km_actual', 15);
-            $table->string('nro_chapa', 10);
-            $table->string('nro_chasis', 30);
+            $table->string('nro_chapa', 10)->unique();
+            $table->string('nro_chasis', 30)->unique();
             $table->timestamps();
             $table->softDeletes();
 

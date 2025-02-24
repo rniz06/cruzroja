@@ -82,6 +82,12 @@ class Voluntario extends Model implements Auditable
         return $this->hasMany(ContactoEmergencia::class);
     }
 
+    // Relacion Inversa
+    public function registroMovimientos()
+    {
+        return $this->hasMany(Movimiento::class);
+    }
+
     /**
      * Se implementa funcion para buscador general.
      */

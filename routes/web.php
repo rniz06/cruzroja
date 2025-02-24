@@ -4,7 +4,7 @@
 
 use App\Http\Controllers\ConductorController;
 use App\Http\Controllers\MovilController;
-use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VoluntarioController;
@@ -69,6 +69,21 @@ Route::middleware('auth')->group(function () {
         Route::get('moviles/{movil}/edit', 'edit')->name('moviles.edit');
         Route::put('moviles/{movil}', 'update')->name('moviles.update');
         Route::delete('moviles/{movil}', 'destroy')->name('moviles.destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Modulo Registro Movimientos
+    |--------------------------------------------------------------------------
+    */
+    Route::controller(MovimientoController::class)->group(function () {
+        Route::get('movimientos', 'index')->name('movimientos.index');
+        Route::get('movimientos/create', 'create')->name('movimientos.create');
+        Route::post('movimientos/store', 'store')->name('movimientos.store');
+        Route::get('movimientos/{registroMovimiento}', 'show')->name('movimientos.show');
+        Route::get('movimientos/{registroMovimiento}/edit', 'edit')->name('movimientos.edit');
+        Route::put('movimientos/{registroMovimiento}', 'update')->name('movimientos.update');
+        Route::delete('movimientos/{registroMovimiento}', 'destroy')->name('movimientos.destroy');
     });
 
     /*

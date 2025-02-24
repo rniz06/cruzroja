@@ -43,4 +43,10 @@ class Movil extends Model implements Auditable
     {
         return $this->belongsTo(Movil\Tipo::class, 'tipo_id');
     }
+
+    // Relacion Inversa
+    public function registroMovimientos()
+    {
+        return $this->hasMany(Movimiento::class, 'movil_id', 'id_movil');
+    }
 }

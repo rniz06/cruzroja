@@ -22,7 +22,7 @@ class Tabla extends Component
     // Actualizar una de las propiedades de búsqueda o paginación
     public function updating($key)
     {
-        if (in_array($key, ['nombre_completo', 'cedula', 'edad', 'licencia', 'conductor_estado'])) {
+        if (in_array($key, ['nombre_completo', 'cedula', 'edad', 'licencia', 'conductor_estado', 'paginado'])) {
             $this->resetPage();
         }
     }

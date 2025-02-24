@@ -40,6 +40,12 @@ class Conductor extends Model implements Auditable
         return $this->belongsTo(Estado::class, 'estado_id');
     }
 
+    // Relacion Inversa
+    public function registroMovimientos()
+    {
+        return $this->hasMany(Movimiento::class);
+    }
+
     protected function casts(): array
     {
         return [

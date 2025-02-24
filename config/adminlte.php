@@ -334,6 +334,12 @@ return [
             'can' => 'Moviles Listar',
             'icon' => 'fas fa-car-side',
         ],
+        [
+            'text' => 'Movimientos',
+            'route' => 'movimientos.index',
+            'can' => 'Movimientos Listar',
+            'icon' => 'fas fa-road',
+        ],
         // [
         //     'text' => 'Personales',
         //     'icon' => 'fas fa-portrait',

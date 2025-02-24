@@ -31,4 +31,10 @@ class Ciudad extends Model implements Auditable
     {
         return $this->hasMany(Voluntario::class);
     }
+
+    // Relacion Inversa
+    public function registroMovimiento()
+    {
+        return $this->hasMany(Movimiento::class);
+    }
 }
