@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Observers\MovimientoObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\Model;
 
+#[ObservedBy([MovimientoObserver::class])]
 class Movimiento extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;

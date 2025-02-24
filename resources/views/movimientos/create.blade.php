@@ -108,7 +108,7 @@
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Km Inicial:</label>
                     <div class="col-sm-10">
                         <input type="number" name="km_inicial" class="form-control" id="km_inicial"
-                            placeholder="km inicial..." readonly required>
+                            placeholder="km inicial..." style="pointer-events: none; background-color: #e9ecef;" required>
                         @error('km_inicial')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -211,16 +211,16 @@
         });
 
         $(document).ready(function() {
-        $('#movil_id').select2({
-            placeholder: 'Seleccionar...',
-            language: "es"
-        });
+            $('#movil_id').select2({
+                placeholder: 'Seleccionar...',
+                language: "es"
+            });
 
-        $('#movil_id').on('change', function() {
-            let kmActual = $(this).find(':selected').data('km');
-            $('#km_inicial').val(kmActual);
+            $('#movil_id').on('change', function() {
+                let kmActual = $(this).find(':selected').data('km');
+                $('#km_inicial').val(kmActual);
+            });
         });
-    });
 
         $(document).ready(function() {
             $('#ciudad_id').select2({
