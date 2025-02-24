@@ -15,7 +15,7 @@
         <form class="form-horizontal" action="{{ route('movimientos.store') }}" method="POST">
             @csrf
             @method('POST')
-            <div class="card-body">                
+            <div class="card-body">
 
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Conductor:</label>
@@ -24,12 +24,13 @@
                             <option>Seleccionar...</option>
                             @foreach ($conductores as $conductor)
                                 <option value="{{ $conductor->id_conductor }}">
-                                    {{ $conductor->nombre_completo ?? 'N/A' }} {{ '-' }} {{ $conductor->cedula ?? 'N/A' }}                                    
+                                    {{ $conductor->nombre_completo ?? 'N/A' }} {{ '-' }}
+                                    {{ $conductor->cedula ?? 'N/A' }}
                                 </option>
                             @endforeach
                         </select>
                         @error('conductor_id')
-                            <div class="text-danger">{{ $message }}</div>                            
+                            <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -38,15 +39,15 @@
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Móvil:</label>
                     <div class="col-sm-10">
                         <select name="movil_id" id="movil_id" class="form-control" required>
-                            <option>Seleccionar...</option>
+                            <option value="">Seleccionar...</option>
                             @foreach ($moviles as $movil)
-                                <option value="{{ $movil->id_movil }}">
-                                    {{ $movil->movil_tipo ?? 'N/A' }} {{ '-' }} {{ $movil->nro_chapa ?? 'N/A' }}                                    
+                                <option value="{{ $movil->id_movil }}" data-km="{{ $movil->km_actual }}">
+                                    {{ $movil->movil_tipo ?? 'N/A' }} - {{ $movil->nro_chapa ?? 'N/A' }}
                                 </option>
                             @endforeach
                         </select>
                         @error('movil_id')
-                            <div class="text-danger">{{ $message }}</div>                            
+                            <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -63,7 +64,7 @@
                             @endforeach
                         </select>
                         @error('ciudad_id')
-                            <div class="text-danger">{{ $message }}</div>                            
+                            <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -84,7 +85,8 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Destino:</label>
                     <div class="col-sm-10">
-                        <input type="text" name="destino" class="form-control" id="inputEmail3" placeholder="Destino..." value="{{ old('destino') }}" required>
+                        <input type="text" name="destino" class="form-control" id="inputEmail3" placeholder="Destino..."
+                            value="{{ old('destino') }}" required>
                         @error('destino')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -94,7 +96,8 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Fecha Hora Sálida:</label>
                     <div class="col-sm-10">
-                        <input type="datetime-local" name="fecha_hora_salida" class="form-control" id="inputEmail3" required>
+                        <input type="datetime-local" name="fecha_hora_salida" class="form-control" id="inputEmail3"
+                            required>
                         @error('fecha_hora_salida')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -104,7 +107,8 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Km Inicial:</label>
                     <div class="col-sm-10">
-                        <input type="number" name="km_inicial" class="form-control" id="inputEmail3" value="{{ old('km_inicial') }}" placeholder="km inicial..." required>
+                        <input type="number" name="km_inicial" class="form-control" id="km_inicial"
+                            placeholder="km inicial..." readonly required>
                         @error('km_inicial')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -118,7 +122,8 @@
                             <option>Seleccionar...</option>
                             @foreach ($voluntarios as $voluntario)
                                 <option value="{{ $voluntario->id_voluntario }}">
-                                    {{ $voluntario->nombre_completo ?? 'N/A' }} {{ '-' }} {{ $voluntario->cedula ?? 'N/A' }}
+                                    {{ $voluntario->nombre_completo ?? 'N/A' }} {{ '-' }}
+                                    {{ $voluntario->cedula ?? 'N/A' }}
                             @endforeach
                         </select>
                     </div>
@@ -137,7 +142,8 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Km Final:</label>
                     <div class="col-sm-10">
-                        <input type="number" name="km_final" class="form-control" id="inputEmail3" value="{{ old('km_final') }}" placeholder="km inicial..." required>
+                        <input type="number" name="km_final" class="form-control" id="inputEmail3"
+                            value="{{ old('km_final') }}" placeholder="km inicial..." required>
                         @error('km_final')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -147,7 +153,8 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Cant. Tripulantes:</label>
                     <div class="col-sm-10">
-                        <input type="number" name="can_tripulantes" class="form-control" value="{{ old('can_tripulantes') }}" placeholder="Cantidad..." required>
+                        <input type="number" name="can_tripulantes" class="form-control"
+                            value="{{ old('can_tripulantes') }}" placeholder="Cantidad..." required>
                         @error('can_tripulantes')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -204,12 +211,16 @@
         });
 
         $(document).ready(function() {
-            $('#movil_id').select2({
-                placeholder: 'Seleccionar...',
-                language: "es",
-
-            });
+        $('#movil_id').select2({
+            placeholder: 'Seleccionar...',
+            language: "es"
         });
+
+        $('#movil_id').on('change', function() {
+            let kmActual = $(this).find(':selected').data('km');
+            $('#km_inicial').val(kmActual);
+        });
+    });
 
         $(document).ready(function() {
             $('#ciudad_id').select2({

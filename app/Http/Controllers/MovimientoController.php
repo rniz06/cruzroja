@@ -28,7 +28,7 @@ class MovimientoController extends Controller
     public function create()
     {
         $conductores = VtConductor::select('id_conductor', 'nombre_completo', 'cedula', 'licencia')->where('estado_id', 1)->get();
-        $moviles = VtMovil::select('id_movil', 'movil_tipo', 'nro_chapa')->where('estado_id', 1)->get();
+        $moviles = VtMovil::select('id_movil', 'movil_tipo', 'nro_chapa', 'km_actual')->where('estado_id', 1)->get();
         $ciudades = Ciudad::select('id_ciudad', 'ciudad')->get();
         $servicios = Servicio::select('id_servicio', 'servicio')->get();
         $voluntarios = VtVoluntario::select('id_voluntario', 'nombre_completo', 'cedula')->where('estado_id', 1)->get();

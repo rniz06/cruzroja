@@ -25,8 +25,8 @@ class StoreMovilRequest extends FormRequest
             'combustible_id' => 'required|exists:moviles_combustibles,id_movil_combustible',
             'tipo_id' => 'required|exists:moviles_tipos,id_movil_tipo',
             'km_actual' => 'required|numeric',
-            'nro_chapa' => 'required|string|min:3|max:7',
-            'nro_chasis' => 'required|string|min:5|max:30',
+            'nro_chapa' => 'required|unique:moviles,nro_chapa|string|min:3|max:7',
+            'nro_chasis' => 'required|unique:moviles,nro_chasis|string|min:5|max:30',
         ];
     }
 }
