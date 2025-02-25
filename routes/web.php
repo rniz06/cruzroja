@@ -80,10 +80,10 @@ Route::middleware('auth')->group(function () {
         Route::get('movimientos', 'index')->name('movimientos.index');
         Route::get('movimientos/create', 'create')->name('movimientos.create');
         Route::post('movimientos/store', 'store')->name('movimientos.store');
-        Route::get('movimientos/{registroMovimiento}', 'show')->name('movimientos.show');
-        Route::get('movimientos/{registroMovimiento}/edit', 'edit')->name('movimientos.edit');
-        Route::put('movimientos/{registroMovimiento}', 'update')->name('movimientos.update');
-        Route::delete('movimientos/{registroMovimiento}', 'destroy')->name('movimientos.destroy');
+        Route::get('movimientos/{movimiento}', 'show')->name('movimientos.show');
+        Route::get('movimientos/{movimiento}/edit', 'edit')->name('movimientos.edit');
+        Route::put('movimientos/{movimiento}', 'update')->name('movimientos.update');
+        Route::delete('movimientos/{movimiento}', 'destroy')->name('movimientos.destroy');
     });
 
     /*

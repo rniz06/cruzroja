@@ -9,6 +9,7 @@ use App\Models\Movimiento;
 use App\Models\Servicio;
 use App\Models\Vistas\VtConductor;
 use App\Models\Vistas\VtMovil;
+use App\Models\Vistas\VtMovimiento;
 use App\Models\Vistas\VtVoluntario;
 use Illuminate\Http\Request;
 
@@ -61,9 +62,9 @@ class MovimientoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Movimiento $movimiento)
+    public function show(VtMovimiento $movimiento)
     {
-        //
+        return view('movimientos.show', compact('movimiento'));
     }
 
     /**
