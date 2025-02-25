@@ -21,15 +21,11 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Detalles</h3>
-
-                {{-- <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div> --}}
+                <div class="card-tools">
+                    <a href="{{ route('movimientos.index') }}" class="btn btn-sm btn-secondary"><i
+                            class="fas fa-arrow-left"></i>
+                        Volver</a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="row">
