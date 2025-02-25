@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             MovilEstadoSeeder::class,
             ServicioSeeder::class,
             FilialSeeder::class,
+            GuardiaItemSeeder::class,
         ]);
     }
 }
