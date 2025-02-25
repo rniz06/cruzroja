@@ -21,6 +21,7 @@ class Voluntario extends Model implements Auditable
     protected $primaryKey = 'id_voluntario';
 
     protected $fillable = [
+        'filial_id',
         'nombres',
         'apellido_paterno',
         'apellido_materno',

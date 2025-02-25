@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             MovilCombustibleSeeder::class,
             MovilEstadoSeeder::class,
             ServicioSeeder::class,
+            FilialSeeder::class,
         ]);
     }
 }

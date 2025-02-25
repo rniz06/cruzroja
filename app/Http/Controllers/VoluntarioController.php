@@ -61,6 +61,7 @@ class VoluntarioController extends Controller
     public function store(StoreVoluntarioRequest $request)
     {
         $voluntario = Voluntario::create([
+            'filial_id' => 1, // FILIAL POR DEFECTO ASUNCION
             'nombres' => $request->nombres,
             'apellido_paterno' => $request->apellido_paterno,
             'apellido_materno' => $request->apellido_materno,
