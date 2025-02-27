@@ -9,6 +9,8 @@ use App\Models\Guardia\Item;
 use App\Models\Guardia\ItemControl;
 use App\Models\Movil;
 use App\Models\Servicio;
+use App\Models\Vistas\VtGuardia;
+use App\Models\Vistas\VtGuardiaItemControl;
 use App\Models\Vistas\VtMovil;
 use App\Models\Vistas\VtVoluntario;
 use Illuminate\Http\Request;
@@ -71,9 +73,10 @@ class GuardiaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Guardia $guardia)
+    public function show(VtGuardia $guardia)
     {
-        //
+        $items = VtGuardiaItemControl::where('guardia_id', $guardia->id_guardia)->get();
+        return view('guardias.show', compact('guardia', 'items'));        
     }
 
     /**
@@ -124,6 +127,7 @@ class GuardiaController extends Controller
      */
     public function destroy(Guardia $guardia)
     {
-        //
+        $guardia->delete();
+        return redirect()->route('guardias.index')->with('success', 'Registro eliminado correctamente');
     }
 }
