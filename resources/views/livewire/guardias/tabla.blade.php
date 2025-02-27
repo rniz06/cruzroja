@@ -13,55 +13,75 @@
             <thead>
                 <tr>
                     <th style="width: 10px"></th>
-                    <th>Nombre Completo: <br> <input class="form-control form-control-sm" type="text" placeholder=""
-                            wire:model.live="nombre_completo"></th>
-                    <th>Cédula: <br> <input class="form-control form-control-sm" type="text" placeholder=""
-                            wire:model.live="cedula"></th>
-                    <th>Edad: <br> <input class="form-control form-control-sm" type="text" placeholder=""
-                            wire:model.live="edad"></th>
-                    <th>Licencia: <br> <input class="form-control form-control-sm" type="text" placeholder=""
-                            wire:model.live="licencia"></th>
-                    <th>Estado: <br> <input class="form-control form-control-sm" type="text" placeholder=""
-                            wire:model.live="conductor_estado"></th>
+                    <th>Fecha Hora: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="fecha_hora"></th>
+                    <th>Grupo: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="grupo"></th>
+                    <th>Servicio: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="servicio"></th>
+                    <th>Móvil: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="movil"></th>
+                    <th>A cargo: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="acargo"></th>
+                    <th>Revisión: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="revision"></th>
+                    <th>Km Inicial: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="km_inicial"></th>
+                    <th>Km Final: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="km_final"></th>
+                    <th>Carga Combustible: <br> <input class="form-control form-control-sm" type="text" placeholder=""
+                            wire:model.live="carga_combustible"></th>
                     <th></th>
                 </tr>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>Nombre Completo:</th>
-                    <th>Cédula:</th>
-                    <th>Edad:</th>
-                    <th>Licencia:</th>
-                    <th>Estado:</th>
+                    <th>Fecha Hora:</th>
+                    <th>Grupo:</th>
+                    <th>Servicio:</th>
+                    <th>Móvil:</th>
+                    <th>A cargo:</th>
+                    <th>Revisión:</th>
+                    <th>Km Inicial:</th>
+                    <th>Km Final:</th>
+                    <th>Carga Combustible:</th>
                     <th style="width: 40px">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($guardias as $guardia)
-                    {{-- <tr>
-                        <td>{{ $conductor->id_conductor ?? null }}</td>
-                        <td>{{ $conductor->nombres ?? '' }} {{ $conductor->apellido_paterno ?? '' }}
-                            {{ $conductor->apellido_materno ?? '' }}</td>
-                        <td>{{ $conductor->cedula ?? 'N/A' }}</td>
-                        <td>{{ $conductor->edad ?? 'N/A' }}</td>
-                        <td>{{ $conductor->licencia ?? 'N/A' }}</td>
-                        <td>{{ $conductor->conductor_estado ?? 'N/A' }}</td>
+                    <tr>
+                        <td>#</td>
+                        <td> {{ date('d-m-Y h:m', strtotime($guardia->fecha_hora))}} Hs.</td>
+                        <td>{{ $guardia->grupo ?? 'N/A' }}</td>
+                        <td>{{ $guardia->servicio ?? '' }}</td>
+                        <td>{{ $guardia->movil_tipo ?? '' }} {{ '-' }}  {{ $guardia->nro_chapa ?? '' }}</td>
+                        <td>{{ $guardia->acargo_cedula ?? 'N/A' }}</td>
+                        <td>{{ $guardia->vol_rea_rev_cedula ?? 'N/A' }}</td>
+                        <td>{{ $guardia->km_inicial ?? 'N/A' }}</td>
+                        <td>{{ $guardia->km_final ?? 'N/A' }}</td>
+                        <td>{{ $guardia->carga_combustible ? 'Sí' : 'No' }}</td>
                         <td>
                             <x-dropdown>
-                                @if (auth()->user()->can('Conductores Editar'))
+                                @if (auth()->user()->can('Guardias Ver'))
                                     <x-slot
-                                        name="edit">{{ route('conductores.edit', $conductor->id_conductor) }}</x-slot>
+                                        name="show">{{ route('guardias.show', $guardia->id_guardia) }}</x-slot>
                                 @endif
 
-                                @if (auth()->user()->can('Conductores Eliminar'))
+                                @if (auth()->user()->can('Guardias Editar'))
                                     <x-slot
-                                        name="action">{{ route('conductores.destroy', $conductor->id_conductor) }}</x-slot>
+                                        name="edit">{{ route('guardias.edit', $guardia->id_guardia) }}</x-slot>
+                                @endif
+
+                                @if (auth()->user()->can('Guardias Eliminar'))
+                                    <x-slot
+                                        name="action">{{ route('guardias.destroy', $guardia->id_guardia) }}</x-slot>
                                 @endif
                             </x-dropdown>
                         </td>
-                    </tr> --}}
+                    </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center font-italic">Sin Registros coincidentes...</td>
+                        <td colspan="11" class="text-center font-italic">Sin Registros coincidentes...</td>
                     </tr>
                 @endforelse
 
