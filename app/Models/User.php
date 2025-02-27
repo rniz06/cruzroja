@@ -58,6 +58,11 @@ class User extends Authenticatable implements Auditable
         ];
     }
 
+    public function guardias()
+    {
+        return $this->hasMany(Guardia::class, 'id_usuario', 'id_usuario');
+    }
+
     /**
      * Se implementa funcion para buscador general.
      */

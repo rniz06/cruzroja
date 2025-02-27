@@ -49,4 +49,10 @@ class Movil extends Model implements Auditable
     {
         return $this->hasMany(Movimiento::class, 'movil_id', 'id_movil');
     }
+
+    // Relacion Inversa
+    public function guardias()
+    {
+        return $this->hasMany(Guardia::class, 'movil_id', 'id_movil');
+    }
 }

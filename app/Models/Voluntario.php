@@ -89,6 +89,12 @@ class Voluntario extends Model implements Auditable
         return $this->hasMany(Movimiento::class);
     }
 
+    public function registroGuardias()
+    {
+        return $this->hasMany(Guardia::class);
+    }
+
+
     /**
      * Se implementa funcion para buscador general.
      */

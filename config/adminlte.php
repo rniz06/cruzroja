@@ -340,6 +340,12 @@ return [
             'can' => 'Movimientos Listar',
             'icon' => 'fas fa-road',
         ],
+        [
+            'text' => 'Guardias',
+            'route' => 'guardias.index',
+            'can' => 'Guardias Listar',
+            'icon' => 'fas fa-clipboard-list',
+        ],
         // [
         //     'text' => 'Personales',
         //     'icon' => 'fas fa-portrait',

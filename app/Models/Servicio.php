@@ -24,4 +24,9 @@ class Servicio extends Model implements Auditable
     {
         return $this->hasMany(Movimiento::class, 'servicio_id', 'id_servicio');
     }
+
+    public function guardias()
+    {
+        return $this->hasMany(Guardia::class, 'servicio_id', 'id_servicio');
+    }
 }

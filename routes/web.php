@@ -3,6 +3,7 @@
 //use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\ConductorController;
+use App\Http\Controllers\GuardiaController;
 use App\Http\Controllers\MovilController;
 use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\RoleController;
@@ -73,7 +74,7 @@ Route::middleware('auth')->group(function () {
 
     /*
     |--------------------------------------------------------------------------
-    | Modulo Registro Movimientos
+    | Modulo Movimientos
     |--------------------------------------------------------------------------
     */
     Route::controller(MovimientoController::class)->group(function () {
@@ -84,6 +85,21 @@ Route::middleware('auth')->group(function () {
         Route::get('movimientos/{movimiento}/edit', 'edit')->name('movimientos.edit');
         Route::put('movimientos/{movimiento}', 'update')->name('movimientos.update');
         Route::delete('movimientos/{movimiento}', 'destroy')->name('movimientos.destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Modulo Guardias
+    |--------------------------------------------------------------------------
+    */
+    Route::controller(GuardiaController::class)->group(function () {
+        Route::get('guardias', 'index')->name('guardias.index');
+        Route::get('guardias/create', 'create')->name('guardias.create');
+        Route::post('guardias/store', 'store')->name('guardias.store');
+        Route::get('guardias/{guardia}', 'show')->name('guardias.show');
+        Route::get('guardias/{guardia}/edit', 'edit')->name('guardias.edit');
+        Route::put('guardias/{guardia}', 'update')->name('guardias.update');
+        Route::delete('guardias/{guardia}', 'destroy')->name('guardias.destroy');
     });
 
     /*
