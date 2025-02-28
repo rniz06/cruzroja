@@ -193,7 +193,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Actualizar</button>
-                <a href="{{ route('movimientos.index') }}" class="btn btn-secondary float-right"><i
+                <a href="{{ route('guardias.index') }}" class="btn btn-secondary float-right"><i
                         class="fas fa-arrow-left"></i>
                     Volver</a>
             </div>

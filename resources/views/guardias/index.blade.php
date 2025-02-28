@@ -2,8 +2,8 @@
 
 {{-- Customize layout sections --}}
 
-@section('subtitle', 'Movimientos')
-@section('content_header_title', 'Movimientos')
+@section('subtitle', 'Guardias')
+@section('content_header_title', 'Guardias')
 @section('content_header_subtitle', 'Listar')
 
 {{-- Content body: main page content --}}
