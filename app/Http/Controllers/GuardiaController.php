@@ -76,15 +76,23 @@ class GuardiaController extends Controller
     public function show(VtGuardia $guardia)
     {
         $items = VtGuardiaItemControl::where('guardia_id', $guardia->id_guardia)->get();
-        return view('guardias.show', compact('guardia', 'items'));        
+        return view('guardias.show', compact('guardia', 'items'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Guardia $guardia)
+    public function edit(VtGuardia $guardia)
     {
-        //
+        $servicios = Servicio::select('id_servicio', 'servicio')->get();
+        $moviles = VtMovil::select('id_movil', 'movil_tipo', 'nro_chapa', 'km_actual')->get();
+        $voluntarios = VtVoluntario::select('id_voluntario', 'nombre_completo', 'cedula')->get();
+        $items = Item::select('id_guardia_item', 'item')->get();
+        // $guardiaItems = ItemControl::where('guardia_id', $guardia->id_guardia)->get();
+        $guardiaItems = ItemControl::where('guardia_id', $guardia->id_guardia)
+            ->pluck('verificacion', 'guardia_item_id') // 'estado' es el valor guardado, 'item_id' es la clave
+            ->toArray();
+        return view('guardias.edit', compact('guardia', 'servicios', 'moviles', 'voluntarios', 'items', 'guardiaItems'));
     }
 
     /**
@@ -107,19 +115,15 @@ class GuardiaController extends Controller
             'observaciones' => $request->observaciones
         ]);
 
-        // Eliminar los registros anteriores de los ítems de esta guardia
-        ItemControl::where('guardia_id', $guardia->id_guardia)->delete();
-
-        // Insertar los nuevos ítems seleccionados
-        foreach ($request->items as $guardiaItemId => $verificacion) {
-            ItemControl::create([
-                'guardia_id' => $guardia->id_guardia,
-                'guardia_item_id' => $guardiaItemId,
-                'verificacion' => $verificacion,
-            ]);
+        // Iterar sobre los ítems recibidos y actualizar o insertar en `ItemControl`
+        foreach ($request->items as $itemId => $verificacion) {
+            ItemControl::updateOrCreate(
+                ['guardia_id' => $guardia->id_guardia, 'guardia_item_id' => $itemId], // Buscar coincidencia
+                ['verificacion' => $verificacion] // Datos a actualizar o insertar
+            );
         }
 
-        return redirect()->route('guardias.index')->with('success', 'Guardia actualizada correctamente');
+        return redirect()->route('guardias.show', $guardia->id_guardia)->with('success', 'Guardia actualizada correctamente');
     }
 
     /**
