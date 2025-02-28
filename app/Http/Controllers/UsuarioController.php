@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Usuario\StoreUsuarioRequest;
+use App\Http\Requests\Usuario\UpdateUsuarioRequest;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Vistas\VtUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -27,28 +31,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::pluck('name', 'name')->all();
         return view('usuarios.index', compact('roles'));
-    }
-
-    /**
-     * Metodo que muestra el formulario para asignar rol a un usuario.
-     */
-    public function asignarrolevista($user)
-    {
-        $usuario = VtUsers::where('id_user',$user)->first();
-        $roles = Role::pluck('name','name')->all();
-        return view('usuarios.asignar-roles', compact('roles', 'usuario'));
-    }
-
-    /**
-     * Metodo para asignar rol a un usuario.
-     */
-    public function asignarrole(Request $request, User $user)
-    {
-        $user->assignRole($request->input('roles'));
-        return redirect()->route('usuarios.index')
-                        ->with('success','Rol asignado correctamente');
     }
 
     /**
@@ -56,15 +40,25 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::pluck('name', 'name')->all();
+        return view('usuarios.create', compact('roles'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUsuarioRequest $request)
     {
-        //
+        $usuario = User::create([
+            'name' => $request->name,
+            'nickname' => $request->nickname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $usuario->assignRole($request->input('roles'));
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuario Creado exitosamente.');
     }
 
     /**
@@ -78,17 +72,35 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(User $usuario)
     {
-        //
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $usuario->roles->pluck('name', 'name')->all();
+
+        return view('usuarios.edit', compact('usuario', 'roles', 'userRole'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUsuarioRequest $request, User $usuario)
     {
-        //
+        $input = $request->except(['password']);
+
+        // Si se proporciona una nueva contraseña, la encripta y la agrega al array
+        if (!empty($request->password)) {
+            $input['password'] = Hash::make($request->password);
+        }
+
+        $usuario->update($input);
+
+        // Verifica si el usuario tiene roles y actualiza sin eliminar directamente
+        if ($request->has('roles')) {
+            $usuario->syncRoles($request->input('roles'));
+        }
+
+        return redirect()->route('usuarios.index')
+            ->with('success', 'Usuario actualizado exitosamente');
     }
 
     /**

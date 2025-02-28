@@ -372,13 +372,13 @@ return [
                     'route' => 'roles.index',
                     'can' => 'Roles Listar',
                 ],
-                [
-                    'text' => 'Permisos',
-                    //'route' => 'personal.create',
-                    'can' => 'Permisos Listar',
-                    'url' => '#',
-                    //'icon' => 'fas fa-plus',
-                ],
+                // [
+                //     'text' => 'Permisos',
+                //     //'route' => 'personal.create',
+                //     'can' => 'Permisos Listar',
+                //     'url' => '#',
+                //     //'icon' => 'fas fa-plus',
+                // ],
             ],
         ],
         // [
