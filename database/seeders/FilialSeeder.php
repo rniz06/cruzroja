@@ -13,13 +13,13 @@ class FilialSeeder extends Seeder
      */
     public function run(): void
     {
-        $filiales = [
-            ['ciudad_id' => 1, 'departamento_id' => 1, 'presidente_id' => null, 'correo' => 'asuncion@cruzroja.org.py', 'ubicacion' => 'Avda. Artigas c/ Andrés Barbero'],
-        ];
+        // $filiales = [
+        //     ['ciudad_id' => 1, 'departamento_id' => 1, 'presidente_id' => null, 'correo' => 'asuncion@cruzroja.org.py', 'ubicacion' => 'Avda. Artigas c/ Andrés Barbero'],
+        // ];
 
-        foreach ($filiales as $filial) {
-            DB::table('filiales')->insert($filial);
-        }
+        // foreach ($filiales as $filial) {
+        //     DB::table('filiales')->insert($filial);
+        // }
 
     }
 }
