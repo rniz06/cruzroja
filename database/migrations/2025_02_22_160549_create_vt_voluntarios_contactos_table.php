@@ -45,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vt_voluntarios_contactos');
+        DB::statement("DROP VIEW IF EXISTS `vt_voluntarios_contactos`");
     }
 };

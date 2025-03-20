@@ -12,26 +12,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("DROP VIEW IF EXISTS `vt_voluntarios_contactos_emergencias`");
-        DB::statement("
-            CREATE VIEW vt_voluntarios_contactos_emergencias AS
-            SELECT
-                vce.idvoluntario_contacto_emergencia,
-                vce.voluntario_id,
-                vce.nombre_completo,
-                vce.telefono,
-                vce.parentesco_id,
-                vce.deleted_at,
-                v.nombres as voluntario_nombres,
-                v.apellido_paterno as voluntario_apellido_paterno,
-                v.apellido_materno as voluntario_apellido_materno,
-                v.cedula as voluntario_cedula,
-                vp.parentesco
-            FROM voluntarios_contactos_emergencias vce
+        // DB::statement("DROP VIEW IF EXISTS `vt_voluntarios_contactos_emergencias`");
+        // DB::statement("
+        //     CREATE VIEW vt_voluntarios_contactos_emergencias AS
+        //     SELECT
+        //         vce.idvoluntario_contacto_emergencia,
+        //         vce.voluntario_id,
+        //         vce.nombre_completo,
+        //         vce.telefono,
+        //         vce.parentesco_id,
+        //         vce.deleted_at,
+        //         v.nombres as voluntario_nombres,
+        //         v.apellido_paterno as voluntario_apellido_paterno,
+        //         v.apellido_materno as voluntario_apellido_materno,
+        //         v.cedula as voluntario_cedula,
+        //         vp.parentesco
+        //     FROM voluntarios_contactos_emergencias vce
 
-            INNER JOIN vt_voluntarios v ON (v.id_voluntario = vce.voluntario_id)
-            INNER JOIN voluntarios_parentescos vp ON (vp.id_voluntario_parentesco = vce.parentesco_id);
-        ");
+        //     INNER JOIN vt_voluntarios v ON (v.id_voluntario = vce.voluntario_id)
+        //     INNER JOIN voluntarios_parentescos vp ON (vp.id_voluntario_parentesco = vce.parentesco_id);
+        // ");
     }
 
     /**

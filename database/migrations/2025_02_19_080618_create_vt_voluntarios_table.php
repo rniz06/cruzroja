@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("DROP VIEW IF EXISTS `vt_voluntarios`");
+        //DB::statement("DROP VIEW IF EXISTS `vt_voluntarios`");
         DB::statement("
             CREATE 
             VIEW `vt_voluntarios` AS
@@ -60,6 +60,6 @@ return new class extends Migration
      */
     // public function down(): void
     // {
-    //     Schema::dropIfExists('vt_voluntarios');
+        //DB::statement("DROP VIEW IF EXISTS `vt_voluntarios`");
     // }
 };
