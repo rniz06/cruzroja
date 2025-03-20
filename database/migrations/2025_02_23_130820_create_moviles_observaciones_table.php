@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('moviles_observaciones', function (Blueprint $table) {
             $table->id('id_movil_observacion');
-            $table->foreignId('movil_id')->constrained('moviles', 'id_movil')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('movil_id')->constrained('moviles', 'id_movil')->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('usuario_id')->constrained('users', 'id_usuario')->onUpdate('cascade')->onDelete('set null');
             $table->text('observacion');
             $table->timestamps();
