@@ -57,15 +57,15 @@
                         <td>{{ $movimiento->can_tripulantes ?? 'N/A' }}</td>
                         <td>
                             <x-dropdown>
-                                @if (auth()->user()->can('Movimientos Ver'))
+                                @if (auth()->user()->can('Registro Movimientos Ver'))
                                     <x-slot name="show">{{ route('movimientos.show', $movimiento->id_movimiento) }}</x-slot>
                                 @endif
 
-                                @if (auth()->user()->can('Movimientos Editar'))
+                                @if (auth()->user()->can('Registro Movimientos Editar'))
                                     <x-slot name="edit">{{ route('movimientos.edit', $movimiento->id_movimiento) }}</x-slot>
                                 @endif
 
-                                @if (auth()->user()->can('Movimientos Eliminar'))
+                                @if (auth()->user()->can('Registro Movimientos Eliminar'))
                                     <x-slot name="action">{{ route('movimientos.destroy', $movimiento->id_movimiento) }}</x-slot>
                                 @endif
                             </x-dropdown>
