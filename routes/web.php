@@ -12,7 +12,7 @@ use App\Http\Controllers\VoluntarioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return route('home');
+    return view('home');
 });
 
 
