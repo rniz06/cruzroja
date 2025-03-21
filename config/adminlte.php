@@ -337,7 +337,7 @@ return [
         [
             'text' => 'Movimientos',
             'route' => 'movimientos.index',
-            'can' => 'Movimientos Listar',
+            'can' => 'Registro Movimientos Listar',
             'icon' => 'fas fa-road',
         ],
         [

@@ -19,6 +19,18 @@ use Illuminate\Support\Facades\Auth;
 class GuardiaController extends Controller
 {
     /**
+     * Establece los middleware necesarios para gestionar permisos
+     * Se utilizan permisos específicos para cada acción del controlador.
+     */
+    function __construct()
+    {
+        $this->middleware('permission:Guardias Listar|Guardias Crear|Guardias Editar|Guardias Eliminar', ['only' => ['index', 'show']]);
+        $this->middleware('permission:Guardias Crear', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Guardias Editar', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Guardias Eliminar', ['only' => ['destroy']]);
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()

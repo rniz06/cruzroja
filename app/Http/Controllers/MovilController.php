@@ -15,6 +15,14 @@ use Illuminate\Http\Request;
 
 class MovilController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:Movil Listar|Movil Crear|Movil Editar|Movil Eliminar', ['only' => ['index', 'show']]);
+        $this->middleware('permission:Movil Crear', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Movil Editar', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Movil Eliminar', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
