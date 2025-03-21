@@ -17,10 +17,10 @@ class MovimientoController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:Registro Movimiento Listar|Registro Movimiento Crear|Registro Movimiento Editar|Registro Movimiento Eliminar', ['only' => ['index', 'show']]);
-        $this->middleware('permission:Registro Movimiento Crear', ['only' => ['create', 'store']]);
-        $this->middleware('permission:Registro Movimiento Editar', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:Registro Movimiento Eliminar', ['only' => ['destroy']]);
+        $this->middleware('permission:Registro Movimientos Listar|Registro Movimientos Crear|Registros Movimiento Editar|Registros Movimiento Eliminar', ['only' => ['index', 'show']]);
+        $this->middleware('permission:Registro Movimientos Crear', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Registro Movimientos Editar', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Registro Movimientos Eliminar', ['only' => ['destroy']]);
     }
 
     /**
