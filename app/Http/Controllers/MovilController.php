@@ -17,10 +17,10 @@ class MovilController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:Movil Listar|Movil Crear|Movil Editar|Movil Eliminar', ['only' => ['index', 'show']]);
-        $this->middleware('permission:Movil Crear', ['only' => ['create', 'store']]);
-        $this->middleware('permission:Movil Editar', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:Movil Eliminar', ['only' => ['destroy']]);
+        $this->middleware('permission:Moviles Listar|Moviles Crear|Moviles Editar|Moviles Eliminar', ['only' => ['index', 'show']]);
+        $this->middleware('permission:Moviles Crear', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Moviles Editar', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Moviles Eliminar', ['only' => ['destroy']]);
     }
 
     /**
