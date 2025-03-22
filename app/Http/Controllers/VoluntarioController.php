@@ -88,8 +88,8 @@ class VoluntarioController extends Controller
     public function show(VtVoluntario $voluntario)
     {
         $contacto = VtVoluntarioContacto::where('voluntario_id' ,$voluntario->id_voluntario)->first();
-        $contactos_emergencias = VtVoluntarioContactoEmergencia::where('voluntario_id' ,$voluntario->id_voluntario)->get();
-        return view('voluntarios.show', compact('voluntario', 'contacto', 'contactos_emergencias'));
+        //$contactos_emergencias = VtVoluntarioContactoEmergencia::where('voluntario_id' ,$voluntario->id_voluntario)->get();
+        return view('voluntarios.show', compact('voluntario', 'contacto'));
     }
 
     /**

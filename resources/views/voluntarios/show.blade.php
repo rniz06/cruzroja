@@ -119,7 +119,7 @@
                         </li>
                     </ul>
 
-                    <h4 class="text-secondary"><i class="fas fa-address-book"></i> Contactos de Emergencia:</h4>
+                    {{-- <h4 class="text-secondary"><i class="fas fa-address-book"></i> Contactos de Emergencia:</h4>
                     <ul class="list-unstyled">
                         <li>
                             @forelse ($contactos_emergencias as $contacto_emergencia)
@@ -129,7 +129,7 @@
                                 <p class="btn-link text-secondary">Sin datos...</p>
                             @endforelse
                         </li>
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
         </div>

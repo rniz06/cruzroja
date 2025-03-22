@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Cruz Roja - Filial Asuncion',
+    'title' => 'Filial Asunción',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Cruz Roja -</b>Filial Asunción',
+    'logo' => '<b>Filial</b> Asunción',
     'logo_img' => 'img/cruz-roja-logo.webp',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
