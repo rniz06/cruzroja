@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Cruz Roja',
+    'title' => 'Cruz Roja - Filial Asuncion',
     'title_prefix' => '',
     'title_postfix' => '',
 
