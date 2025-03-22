@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Cruz</b> Roja',
+    'logo' => '<b>Cruz Roja -</b>Filial Asunción',
     'logo_img' => 'img/cruz-roja-logo.webp',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
