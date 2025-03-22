@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VtMovilObservacion extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     
     protected $table = 'vt_moviles_observaciones';
 

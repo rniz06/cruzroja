@@ -29,12 +29,12 @@
                         <i class="fas fa-plus"></i> Contacto
                     </button>
                 @endcan --}}
-                @can('Voluntarios Agregar Contacto Emergencia')
+                {{-- @can('Voluntarios Agregar Contacto Emergencia')
                     <!-- Button Modal Contacto Emergencia -->
                     <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#formcontactoemergencia">
                         <i class="fas fa-plus"></i> Emergencia
                     </button>
-                @endcan
+                @endcan --}}
             </div>
         </div>
         <div class="card-body">
